@@ -159,3 +159,36 @@ tree = tree_generate(np.column_stack((X, y)), A)
 predictions = predict(tree, X)
 print("Predictions:", predictions)
 print("Actual:", y.tolist())
+
+from graphviz import Digraph
+
+def plot_tree(tree, graph=None, parent_name=None, edge_label=None):
+    if graph is None:
+        graph = Digraph()
+
+    node_name = str(id(tree))  # 使用节点对象的唯一 ID 作为节点名称
+    if tree.is_leaf():
+        graph.node(node_name, label=f"Class: {tree.value}", shape="box")
+    else:
+        if tree.threshold is not None:  # 连续值特征
+            graph.node(node_name, label=f"Feature {tree.feature} <= {tree.threshold:.2f}")
+        else:  # 离散值特征
+            graph.node(node_name, label=f"Feature {tree.feature}")
+
+    if parent_name is not None:
+        graph.edge(parent_name, node_name, label=edge_label)
+
+    if not tree.is_leaf():
+        if tree.threshold is not None:  # 连续值特征
+            plot_tree(tree.branches["left"], graph, node_name, "Yes")
+            plot_tree(tree.branches["right"], graph, node_name, "No")
+        else:  # 离散值特征
+            for value, branch in tree.branches.items():
+                plot_tree(branch, graph, node_name, f"= {value}")
+
+    return graph
+
+# 绘制决策树
+tree_graph = plot_tree(tree)
+tree_graph.render("decision_tree", format="png", cleanup=True)  # 保存为 PNG 文件
+tree_graph.view()  # 打开图形查看器
