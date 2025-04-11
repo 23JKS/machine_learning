@@ -4,22 +4,24 @@ from matplotlib import pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import StandardScaler
+
 # 加载数据
 data = pd.read_csv('blood_data.txt', header=None, names=['Feature1', 'Feature2', 'Feature3', 'Feature4', 'Label'])
 
 # 划分数据集
 X = data[['Feature1', 'Feature2', 'Feature3', 'Feature4']].values  # 特征
 y = data['Label'].values  # 标签
-test_size=600
-train_size=748-test_size
+test_size = 600
+train_size = 748 - test_size
 
-# 划分训练集和测试集
+# 划分训练集和测试集，
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, train_size=train_size, random_state=54, stratify=y)
+
 # 特征标准化
 scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
-# data.to_csv("ss");
+
 # 手动实现 LDA
 class LDA:
     def __init__(self):
@@ -67,7 +69,6 @@ class LDA:
         projected_means = np.dot(class_means, self.theta)
         self.threshold = np.mean(projected_means)
 
-
     def predict(self, X):
         """
         预测类别
@@ -85,14 +86,14 @@ lda.fit(X_train, y_train)
 
 # 在测试集上进行预测
 y_pred = lda.predict(X_test)
-print("投影方向:",lda.theta)
+print("投影方向:", lda.theta)
+
 # 计算准确率
 accuracy = accuracy_score(y_test, y_pred)
-
 print(f"测试集准确率: {accuracy * 100:.2f}%")
 
 # 可视化投影分布
-def plot_projections(X, y, w,threshold ,title):
+def plot_projections(X, y, w, threshold, title):
     projections = X @ w
     plt.figure(figsize=(10, 6))
     plt.hist(projections[y == 0], bins=20, alpha=0.5, label='Class 0', color='blue')
@@ -104,5 +105,5 @@ def plot_projections(X, y, w,threshold ,title):
     plt.legend()
     plt.show()
 
-plot_projections(X_train, y_train, lda.theta, lda.threshold,"Training Set Projections")
-plot_projections(X_test, y_test, lda.theta,lda.threshold, "Test Set Projections")
+plot_projections(X_train, y_train, lda.theta, lda.threshold, "Training Set Projections")
+plot_projections(X_test, y_test, lda.theta, lda.threshold, "Test Set Projections")

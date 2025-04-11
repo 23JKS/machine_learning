@@ -170,7 +170,6 @@ y = data[:, -1]
 
 
 for i in range(0,4):
-    # print(X[:,i])
     print(dic[i],"的信息增益率：",information_gain_ratio(X[:, i],y))
 # 构建决策树
 A = list(range(X.shape[1]))
@@ -178,8 +177,7 @@ tree = tree_generate(np.column_stack((X, y)), A)
 
 # 输出决策树结构（字典）
 tree_dict = tree_to_dict(tree)
-print("Decision Tree Structure (Dictionary):")
-print(tree_dict)
+
 
 # 绘制决策树图形
 graph = plot_tree(tree)
