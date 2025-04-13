@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1d418374-78b9-4830-aaa0-f73382b2255e" name="更改" comment="增加了梯度上升方法最大化瑞利商">
-      <change afterPath="$PROJECT_DIR$/Perceptron/lab3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Perceptron/perceptron_data.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="1d418374-78b9-4830-aaa0-f73382b2255e" name="更改" comment="增加了单层感知机算法" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -126,7 +122,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743068335897</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="增加了单层感知机算法">
+      <option name="closed" value="true" />
+      <created>1744549882598</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1744549882598</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -142,6 +146,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="增加了梯度上升方法最大化瑞利商" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加了梯度上升方法最大化瑞利商" />
+    <MESSAGE value="增加了单层感知机算法" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加了单层感知机算法" />
   </component>
 </project>
