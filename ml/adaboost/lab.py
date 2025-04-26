@@ -97,7 +97,7 @@ test_data = load_data('test.txt')
 X_train, y_train = train_data[:, :2], train_data[:, 2]
 X_test, y_test = test_data[:, :2], test_data[:, 2]
 
-adaboost = Adaboost(n_estimators=100000)
+adaboost = Adaboost(n_estimators=50)
 adaboost.fit(X_train, y_train)
 
 y_train_pred = adaboost.predict(X_train)
