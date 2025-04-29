@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.pyplot as plt
 
 def plot_decision_boundary(model, X, y):
     x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
@@ -15,6 +14,7 @@ def plot_decision_boundary(model, X, y):
     plt.scatter(X[y == 1, 0], X[y == 1, 1], label='Class 1', color='blue')
     plt.xlabel('x1')
     plt.ylabel('x2')
+
     plt.legend()
     plt.show()
 
@@ -88,6 +88,7 @@ def load_data(filename):
     with open(filename, 'r') as f:
         for line in f:
             row = line.strip().replace('[', '').replace(']', '').split()
+            # print("ee",row)
             data.append([float(x) for x in row])
     return np.array(data)
 
@@ -97,7 +98,7 @@ test_data = load_data('test.txt')
 X_train, y_train = train_data[:, :2], train_data[:, 2]
 X_test, y_test = test_data[:, :2], test_data[:, 2]
 
-adaboost = Adaboost(n_estimators=50)
+adaboost = Adaboost(n_estimators=60000)
 adaboost.fit(X_train, y_train)
 
 y_train_pred = adaboost.predict(X_train)
